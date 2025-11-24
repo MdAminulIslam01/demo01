@@ -23,6 +23,7 @@ async function main() {
     await fenTX2.wait();
     const balance2 = await ethers.provider.getBalance(contractAddress);
     console.log(`合约余额：${balance2} `);
+    console.log("✅ 部署/验证成功");
     
 }
 
