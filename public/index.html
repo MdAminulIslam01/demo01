@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fb">
+    <meta name="description" content="拾光账本，轻松记录每一笔收入和支出。">
+    <title>拾光账本 · 收支总览</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <a class="brand" href="/" aria-label="拾光账本首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="7" width="24" height="19" rx="6" fill="currentColor" opacity=".16"></rect>
+              <path d="M8 12.5h16M8 17h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+              <circle cx="22" cy="20" r="2.4" fill="currentColor"></circle>
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>拾光账本</strong>
+            <small>把日子过得有数</small>
+          </span>
+        </a>
+
+        <p class="nav-caption">工作台</p>
+        <nav class="main-nav">
+          <a class="nav-item is-active" href="#overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="2"></rect><rect x="13.5" y="3.5" width="7" height="4" rx="2"></rect><rect x="13.5" y="10.5" width="7" height="10" rx="2"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="2"></rect></svg>
+            <span>账目总览</span>
+          </a>
+          <a class="nav-item" href="#transactions">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14M5 12h14M5 17.5h9"></path><circle cx="3.5" cy="6.5" r=".7" fill="currentColor" stroke="none"></circle><circle cx="3.5" cy="12" r=".7" fill="currentColor" stroke="none"></circle><circle cx="3.5" cy="17.5" r=".7" fill="currentColor" stroke="none"></circle></svg>
+            <span>收支明细</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.4c0 4.3-2.9 7.5-7 9.1-4.1-1.6-7-4.8-7-9.1V6l7-2.5Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </span>
+          <div>
+            <strong>你的账本，只属于你</strong>
+            <p>数据保存在当前环境的本地文件中。</p>
+          </div>
+        </div>
+        <div class="sidebar-bottom">
+          <span class="status-dot"></span>
+          <span>本地账本已就绪</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>我的空间</span><span class="breadcrumb-separator">/</span><strong>账目总览</strong></div>
+          <div class="topbar-right">
+            <div class="today-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="15" rx="3"></rect><path d="M8 3.5v4M16 3.5v4M4 10h16"></path></svg>
+              <span id="today-label">今天</span>
+            </div>
+            <button class="button button-primary top-add" id="jump-to-form" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+              <span>记一笔</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="welcome-row" id="overview">
+          <div>
+            <p class="eyebrow">PERSONAL FINANCE</p>
+            <h1>每一笔，都值得认真记录。</h1>
+            <p class="welcome-subtitle">看清收支，给生活多一点从容。</p>
+          </div>
+          <div class="welcome-stamp" aria-hidden="true">
+            <span class="stamp-sun"></span>
+            <span class="stamp-line stamp-line-one"></span>
+            <span class="stamp-line stamp-line-two"></span>
+            <span class="stamp-line stamp-line-three"></span>
+          </div>
+        </section>
+
+        <section class="summary-grid" aria-label="收支汇总">
+          <article class="summary-card balance-card">
+            <div class="summary-card-top">
+              <div>
+                <p class="summary-label">累计结余</p>
+                <p class="summary-hint">收入减去支出</p>
+              </div>
+              <span class="summary-icon balance-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 7.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-10Z"></path><path d="M4 7.5V6a2 2 0 0 1 2-2h12M15.5 13h4"></path><circle cx="15.5" cy="13" r=".7" fill="currentColor" stroke="none"></circle></svg>
+              </span>
+            </div>
+            <p class="summary-amount" id="balance-value">¥0.00</p>
+            <div class="balance-footer">
+              <span class="balance-footer-icon" aria-hidden="true">↗</span>
+              <span>从第一笔开始，慢慢看见变化</span>
+            </div>
+            <span class="balance-orb balance-orb-one" aria-hidden="true"></span>
+            <span class="balance-orb balance-orb-two" aria-hidden="true"></span>
+          </article>
+
+          <article class="summary-card metric-card income-card">
+            <div class="metric-heading">
+              <span class="metric-icon income-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 16.5 10 11l3.5 3.5L20 7"></path><path d="M14 7h6v6"></path></svg>
+              </span>
+              <span class="metric-period">本月</span>
+            </div>
+            <p class="metric-label">收入</p>
+            <p class="metric-value" id="income-value">¥0.00</p>
+            <p class="metric-caption">记录每一份收获</p>
+          </article>
+
+          <article class="summary-card metric-card expense-card">
+            <div class="metric-heading">
+              <span class="metric-icon expense-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m5 7.5 5 5 3.5-3.5L20 16"></path><path d="M14 16h6v-6"></path></svg>
+              </span>
+              <span class="metric-period">本月</span>
+            </div>
+            <p class="metric-label">支出</p>
+            <p class="metric-value" id="expense-value">¥0.00</p>
+            <p class="metric-caption">每一份花费都心中有数</p>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <section class="panel transactions-panel" id="transactions" aria-labelledby="transactions-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow panel-eyebrow">YOUR ACTIVITY</p>
+                <h2 id="transactions-title">收支明细</h2>
+              </div>
+              <div class="filter-group" role="group" aria-label="筛选账目">
+                <button class="filter-button is-selected" data-filter="all" type="button" aria-pressed="true">全部</button>
+                <button class="filter-button" data-filter="expense" type="button" aria-pressed="false">支出</button>
+                <button class="filter-button" data-filter="income" type="button" aria-pressed="false">收入</button>
+              </div>
+            </div>
+            <div class="transaction-list" id="transaction-list" aria-live="polite">
+              <div class="loading-state"><span class="loading-spinner"></span><span>正在整理账目…</span></div>
+            </div>
+            <div class="list-footer" id="list-footer" hidden></div>
+          </section>
+
+          <aside class="panel entry-panel" aria-labelledby="entry-title">
+            <div class="entry-panel-heading">
+              <div>
+                <p class="eyebrow panel-eyebrow">QUICK ENTRY</p>
+                <h2 id="entry-title">记一笔</h2>
+              </div>
+              <span class="entry-heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+              </span>
+            </div>
+            <form id="transaction-form">
+              <div class="type-switch" role="group" aria-label="账目类型">
+                <button class="type-option is-active" type="button" data-type="expense" aria-pressed="true"><span class="type-dot"></span>支出</button>
+                <button class="type-option" type="button" data-type="income" aria-pressed="false"><span class="type-dot"></span>收入</button>
+              </div>
+              <label class="field-label" for="description">这笔钱用来做什么？</label>
+              <input class="text-input" id="description" name="description" type="text" maxlength="80" placeholder="例如：午餐、通勤、工资" required>
+
+              <label class="field-label amount-label" for="amount">金额</label>
+              <div class="amount-input-wrap">
+                <span class="currency-symbol" aria-hidden="true">¥</span>
+                <input class="amount-input" id="amount" name="amount" type="number" min="0.01" max="100000000" step="0.01" inputmode="decimal" placeholder="0.00" required>
+              </div>
+
+              <div class="field-row">
+                <div class="field-column">
+                  <label class="field-label" for="category">分类</label>
+                  <div class="select-wrap">
+                    <select class="text-input select-input" id="category" name="category" required></select>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg>
+                  </div>
+                </div>
+                <div class="field-column">
+                  <label class="field-label" for="date">日期</label>
+                  <input class="text-input date-input" id="date" name="date" type="date" required>
+                </div>
+              </div>
+
+              <button class="button button-primary submit-button" id="submit-button" type="submit">
+                <span>保存这笔账</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </button>
+              <p class="form-footnote"><span class="lock-mark" aria-hidden="true">●</span> 账目保存在当前环境的本地文件中</p>
+            </form>
+          </aside>
+        </section>
+
+        <footer class="page-footer">
+          <span>拾光账本</span>
+          <span class="footer-divider">·</span>
+          <span>认真记录，轻松生活</span>
+        </footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

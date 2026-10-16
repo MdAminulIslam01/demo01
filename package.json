@@ -1,0 +1,9 @@
+{
+  "name": "shiguang-ledger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一个轻量的个人收支记账系统",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
